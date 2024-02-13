@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <link rel="icon" href="images/favicon.png" type="image/gif" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+    <script src="./vendor/jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="book.js"></script>
+</head>
+
+<body>
+    <div id="includedContent_headers"></div>
+    <script> $(function () { $("#includedContent_headers").load("header.html") })</script>
+
+    <div ng-app="myApp3" ng-controller="myCtrl3">
+        <title>{{name}} - Louisss</title>
+        <div class="row justify-content-center">
+            <div class="col-">
+                <img style="width: 300px;margin: 15px;" ng-src="{{image}}" alt="">
+            </div>
+            <div class="col-4">
+                <p style="font-size: 78px; "><b>{{name}}</b></p>
+                <h1 class="price">{{price}} ฿</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem animi facilis reiciendis, sunt
+                    similique natus nulla, libero deleniti eos ipsa aliquid nobis quisquam eaque atque cum sequi
+                    perferendis qui optio.</p>
+                <p>
+                    คะแนน :
+                    <i style="color: orange;" class="fa fa-star"></i>
+                    <i style="color: orange;" class="fa fa-star"></i>
+                    <i style="color: orange;" class="fa fa-star"></i>
+                    <i style="color: orange;" class="fa fa-star"></i>
+                    <i style="color: orange;" class="fa fa-star"></i>
+                </p>
+                <p class="cate">หมวดหมู่ : <a href="LN.html">{{category_name}}</a></p>
+                <p>ผู้แต่ง : {{author}}</p>
+                <p>สินค้าเหลืออยู่ : {{stock}}</p>
+                <label for="quantity">จำนวนสินค้า :</label>
+                <input type="number" id="quantity" name="จำนวน" min="1" max="20">
+                <div>
+                    <button ng-click="Buy()" class="nicebutton-login" type="submit">ใส่ตะกร้า</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="includedContent_footer"></div>
+    <script> $(function () { $("#includedContent_footer").load("footer.html") })</script>
+</body>
+
+</html>

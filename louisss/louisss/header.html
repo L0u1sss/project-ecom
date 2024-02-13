@@ -1,0 +1,102 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create four equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 2%;
+    height: auto;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .disble-item {
+    display: none;
+  }
+
+  .disble-item1 {
+    display: none;
+  }
+
+  @media only screen and (max-width: 991px) {
+    .disble-item {
+      display: block;
+    }
+  }
+
+  @media only screen and (min-width: 991px) {
+    .disble-item1 {
+      display: block;
+    }
+  }
+</style>
+<div>
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand headname" href="index.html">
+          <span>
+            Louisss Bookstore
+          </span>
+        </a>
+        <a class="nav-link disble-item" style="margin-left: auto;" href="">
+          <i style="color: white; font-size: 20px;" class="fa fa-shopping-cart"></i>
+          <span class="badge badge-warning" id="lblCartCount">
+            <label id="amount"></label>
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link pl-lg-0" href="index.html">หน้าแรก <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"> เกี่ยวกับเรา</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">หมวดหมู่</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html"> บทความ </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">ติดต่อเรา</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html"> เข้าสู่ระบบ</a>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disble-item1" href="">
+                <i style="color: white; font-size: 20px;" class="fa fa-shopping-cart"></i>
+                <span class="badge badge-warning" id="lblCartCount">
+                  <label id="amountMobile"></label>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <from class="search_form">
+            <input type="text" class="form-control" placeholder="Search here...">
+            <button class="" type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </from>
+        </div>
+      </nav>
+    </div>
+  </header>
+</div>
+<script src="header.js"></script>

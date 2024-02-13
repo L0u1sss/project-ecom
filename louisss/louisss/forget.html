@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <!-- Basic -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Site Metas -->
+        <link rel="icon" href="images/favicon.png" type="image/gif" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+      
+        <title>Forget password - Louisss</title>
+      
+        <!-- bootstrap core css -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <!-- font awesome style -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+      
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet" />
+        <!-- responsive style -->
+        <link href="css/responsive.css" rel="stylesheet" />
+        <script src="./vendor/jquery/jquery-3.6.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>  
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="password.js"></script>
+        
+    </head>
+    <body>
+        <div id="includedContent_headers"></div>
+            <script> $(function () { $("#includedContent_headers").load("header.html")})</script>
+<div ng-app="myApp2" ng-controller="myCtrl2">           
+<div class="hero_area">
+<div class="login" style="margin-top: 3%; margin-left: auto ;margin-right: auto; width: 60%;">
+    <div class="row">
+        <div class="col" style="border-left-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
+            <h1>ลืมรหัสผ่าน?</h1>
+            <p>กรุณากรอกอีเมลเพื่อดำเนินการเปลี่ยนรหัสผ่าน</p>
+            <label for="email"><b>email</b></label><br>
+            <input id="emailrepass"class="login-input" type="email" placeholder="กรอก email"><br>
+            <button ng-click="OTP()" class="nicebutton-login" type="submit">ขอ OTP และ ref No.</button>
+        </div>
+        <div class="col" style="border-left-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
+            <h1>รหัสผ่านใหม่</h1>
+            <label for="email"><b>email</b></label><br>
+            <input id="emailnewpass"class="login-input" type="email" placeholder="กรอก email"><br>
+
+            <label for="OTP"><b>OTP</b></label><br>
+            <input id="OTP" class="login-input" type="text" placeholder="กรอก OTP"><br>
+
+            <label for="ref"><b>ref No.</b></label><br>
+            <input id="ref" class="login-input" type="text" placeholder="กรอก ref No."><br>
+
+            <label for="newpassword"><b>รหัสผ่านใหม่</b></label><br>
+            <input id="newpassword" class="login-input" type="password" placeholder="กรอก รหัสผ่าน"><br>
+
+            <label for="newconpassword"><b>ยืนยันรหัสผ่านใหม่</b></label><br>
+            <input id="newconpassword"class="login-input" type="password" placeholder="กรอก รหัสผ่าน อีกครั้ง"><br>
+            <button ng-click="Newpass()" class="nicebutton-login" type="submit">ยืนยันการเปลี่ยนรหัสผ่าน</button>
+        </div>
+    </div>   
+</div>
+</div>
+</div>
+        <div id="includedContent_footer"></div>
+        <script> $(function () { $("#includedContent_footer").load("footer.html")})</script>
+    </body>
+</html>

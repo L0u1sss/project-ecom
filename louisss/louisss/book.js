@@ -35,6 +35,7 @@ app.controller('myCtrl3', function ($scope) {
         $scope.price = Number(item.price);
         $scope.stock = item.stock;
         $scope.uuid = item.uuid;
+        $scope.cateuuid = item.cateuuid
         $scope.image = "http://localhost/" + item.image;
         $scope.$apply();
       }

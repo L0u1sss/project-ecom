@@ -27,7 +27,7 @@
   <script src="./vendor/jquery/jquery-3.6.0.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
-  <!-- <script src="categorise.js"></script> -->
+  <script src="cart.js"></script>
 </head>
 
 <body class="sub_page">
@@ -48,21 +48,27 @@
             <div class="container ">
                 <div class="heading_container heading_center">
                     <h2>
-                        รถเข็นของคุณ
+                        รถเข็นของคุณ {{name}}
                     </h2>
                 </div>
-                <div class="row">
-                    <div ng-repeat="y in item" class="col-sm-6 col-md-4 ">
-                        <div class="box ">
-                            <div class="img-box">
-                                <a href=""><img ng-src="{{y.urlImage}}" alt=""></a>
-                            </div>
-                            <div class="cate">
-
-                            </div>
+                <div ng-repeat="y in k" style="margin-top: 5%; margin-left: auto ;margin-right: auto; width: 60%;">
+                    <div class="row">
+                        <div style="margin: 15px;">
+                            <img ng-src="{{y.urlImage}}" alt="">
+                        </div>
+                        <div style="margin: 15px;">
+                            <h1>{{y.name}}</h1><br>
+                            <h3>จำนวน : {{y.amount}} เล่ม</h3>
+                            <h3>ราคา : {{y.price}} บาท</h3>
+                        </div>
+                        <div style="margin: 15px;">
+                            <h1></h1>
                         </div>
                     </div>
                 </div>
+                <h1 style="margin: 15px;">
+                ทั้งหมด : {{sumamount}} เล่ม<br>
+                รวมราคา : {{sumprince}} บาท</h1>
             </div>
         </div>
     </section>

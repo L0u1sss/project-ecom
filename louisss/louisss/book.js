@@ -87,7 +87,7 @@ app.controller('myCtrl3', function ($scope) {
           icon: "error"
         });
       }
-      if (quantity >= 1 && quantity <= $scope.stock && response.message == "successful") {
+      if (quantity >= 1 && quantity <= $scope.stock || response.message == "successful") {
         Swal.fire({
           title: "สำเร็จ",
           text: "ใส่ตะกร้าเรียบร้อย",

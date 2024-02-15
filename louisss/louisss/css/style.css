@@ -374,6 +374,25 @@ a:focus {
   transition: all 0.3s;
   margin-top: 15px;
 }
+
+.cancelbutton {
+  display: inline-block;
+  padding: 10px 45px;
+  background-color: #b84444;
+  color: #ffffff;
+  border-radius: 45px;
+  border: 1px solid #b84444;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.cancelbutton:hover{
+  background-color: white;
+  color: #b84444;
+}
+
 .nicebutton a:hover{
   background-color: white;
   color: #44b89d;

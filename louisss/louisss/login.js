@@ -99,7 +99,7 @@ app.controller('myCtrl1', function($scope) {
             });
             setTimeout(function(){
               location.reload();
-          }, 3000);
+          }, 1000);
           }
           if(response.message === "รหัสผ่านไม่ตรงกัน"){
             Swal.fire({

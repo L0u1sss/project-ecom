@@ -95,7 +95,7 @@ app.controller('myCtrl3', function ($scope) {
         });
         setTimeout(function () {
           location.reload();
-        }, 3000);
+        }, 1000);
       }
       if (response.message === "โทเท็นหมดเวลาแล้ว") {
         Swal.fire({

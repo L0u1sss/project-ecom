@@ -2,6 +2,7 @@ console.log('connect cart.js');
 var app = angular.module('myAppCart', []);
 app.controller('myCtrlCart', function ($scope) {
   console.log('connect cart.js controller');
+  $scope.k = [];
 
   info();
   function info() {
@@ -35,4 +36,36 @@ app.controller('myCtrlCart', function ($scope) {
     });
   }
 
+  $scope.cancel = function(uuid, book_uuid){
+    console.log(uuid);
+    console.log(book_uuid);
+
+    var settings = {
+      "url": "http://localhost/php-api/index.php/api/User3/CancelBookinCart",
+      "method": "POST",
+      "timeout": 0,
+      "headers": {
+        "X-Access-Token": localStorage.getItem("token"),
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "book_uuid": book_uuid,
+        "cart_uuid": uuid
+      }
+    };
+    
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      if(response.message === "updated"){
+        Swal.fire({
+          title: 'ลบสินค้าสำเร็จ',
+          text: '',
+          icon: 'success'
+        });
+        setTimeout(function(){
+          location.reload();
+      }, 1000);
+      }
+    });
+  }
 });

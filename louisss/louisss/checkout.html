@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="images/favicon.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Checkout - Louisss</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <script src="./vendor/jquery/jquery-3.6.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="checkout.js"></script>
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div id="includedContent_headers"></div>
+    <script> $(function () { $("#includedContent_headers").load("header.html") })</script>
+    <!-- end header section -->
+  </div>
+
+
+  <!-- catagory section -->
+<div ng-app="myAppCart" ng-controller="myCtrlCart">
+    <section class="catagory_section layout_padding">
+        <div class="catagory_container">
+            <div class="container ">
+                <div class="heading_container heading_center">
+                    <h2>
+                        คำสั่งซื้อของคุณ {{name}}
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h2>ข้อมูลที่จัดส่ง</h2>
+                        <label for="Fname"><b>ชื่อ</b></label><br>
+                        <input id="sendFname" class="login-input" type="text" placeholder="กรอก ชื่อ"><br>
+
+                        <label for="Lname"><b>นามสกุล</b></label><br>
+                        <input id="sendLname" class="login-input" type="text" placeholder="กรอก นามสกุล"><br>
+                       
+                        <label for="email"><b>email</b></label><br>
+                        <input id="sendemail" class="login-input" type="email" placeholder="กรอก email"><br>
+
+                        <label for="phone"><b>เบอร์มือถือ</b></label><br>
+                        <input id="sendphone" class="login-input" type="text" placeholder="กรอก เบอร์มือถือ"><br>
+
+                        <label for="address"><b>ที่อยู่</b></label><br>
+                        <input id="sendaddress" class="login-input" type="text" placeholder="กรอก ที่อยู่"><br>
+
+                    </div>
+                
+                    <div class="col">
+                        <h2>รายการสั่งซื้อ</h2>
+                        <div ng-repeat="y in k" style="border-bottom-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
+                            <div>
+                                <h3>{{y.name}}</h3>
+                                <h3>จำนวน : {{y.amount}} เล่ม</h3>
+                                <h3>ยอดรวม : {{y.price}} บาท</h3>
+                                
+                            </div>
+                        </div>
+                        <h3 style="margin: 15px;">
+                            ทั้งหมด : {{sumamount}} เล่ม<br>
+                            ยอดรวม : {{sumprince}} บาท</h3>
+                            <button ng-click="" class="nicebutton-login" type="submit">ยืนยันการสั่งซื้อ</button>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+  <!-- end catagory section -->
+
+  <div id="includedContent_footer"></div>
+  <script> $(function () { $("#includedContent_footer").load("footer.html") })</script>
+</body>
+
+</html>

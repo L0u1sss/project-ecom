@@ -723,7 +723,7 @@ font-weight: bold;
 }
 .login-input{
   width: 100%;
-  border: 0;
+  border: 1px solid #ccc;
   height: 50px;
   border-radius: 25px;
   margin-bottom: 25px;

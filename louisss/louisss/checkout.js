@@ -1,4 +1,4 @@
-console.log('connect cart.js');
+console.log('connect checkout.js');
 var app = angular.module('myAppCart', []);
 app.controller('myCtrlCart', function ($scope) {
   console.log('connect cart.js controller');

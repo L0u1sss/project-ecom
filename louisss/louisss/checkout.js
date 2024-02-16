@@ -48,6 +48,13 @@ app.controller('myCtrlCart', function ($scope) {
 
     $.ajax(settings).done(function (response) {
       console.log(response);
+      if(response==='checked out'){
+        Swal.fire({
+          title: 'hi',
+          text: '',
+          icon: 'success'
+        });
+      }
     });
   }
 });

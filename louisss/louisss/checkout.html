@@ -73,16 +73,16 @@
                                 <div>
                                     <h3>{{y.name}}</h3>
                                     <h3>จำนวน : {{y.amount}} เล่ม</h3>
-                                    <h3>ยอดรวม : {{y.price}} บาท</h3>
+                                    <h3>ยอดรวม : <span style="color: #44b89d;">{{y.price}}</span> บาท</h3>
 
                                 </div>
                             </div>
                             <h3 style="margin: 15px; text-align: right;">
                                 ทั้งหมด : {{sumamount}} เล่ม<br>
-                                ยอดรวม : {{sumprince}} บาท</h3>
+                                ยอดรวม : <span style="color: #44b89d; font-weight: bold;">{{sumprince}}</span> บาท</h3>
 
 
-                            <button ng-click="" class="nicebutton-login" type="submit"
+                            <button ng-click="checkouttoconfirm()" class="nicebutton-login" type="submit"
                                 style="margin-left: auto ;margin-right: auto; width: 100%;">ยืนยันการสั่งซื้อ</button>
                         </div>
                     </div>

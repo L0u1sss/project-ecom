@@ -432,14 +432,61 @@ class User3 extends MY_Controller {
         $this->response($data, MY_Controller::HTTP_OK);
     }
 
-    public function testcancel_post(){
+    public function checkouttoconfirm_post(){
         $request = $this->post();
-        $data = $this->User3models->CanceltoStock($request);
-        $book_stock=$data["0"]["book_stock"];
-        $book_sold=$data["0"]["book_sold"];
-        $cart_amount=$data["0"]["cart_amount"];
-        $upbook_stock= $book_stock + $cart_amount;
-        $upbook_sold= $book_sold - $cart_amount;
-        $this->response($upbook_sold, MY_Controller::HTTP_OK);
+        $header = apache_request_headers();
+        $token = $header["X-Access-Token"];
+        $payload = $this -> CheckJWTtoken($token);
+        $Actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+
+        $data = $this->User3models->Getallbookincart($request,$payload -> uuid);
+        $amount = $data["res2"]["0"]["sum(ca.amount)"];
+        $price = $data["res2"]["0"]["sum(ca.price)"];
+        $data = $data["res1"];
+        // $this->response($data, MY_Controller::HTTP_OK);
+        if (empty($request["Fname"]) || empty($request["Lname"]) || empty($request["phone"]) || empty($request["email"]) || empty($request["address"]))
+        {
+            $msg = ['status'=>false,'error'=>true,'message'=>'กรุณากรอกข้อมูลให้ครบ'];
+            
+            $this->response($msg, MY_Controller::HTTP_OK);
+        }
+
+            for($i = 0 ; $i < count($data) ; $i++){
+                $cart_uuid= $data[$i]["uuid"];
+                $this->User3models->Updatecartcheckouttoconfirm($cart_uuid);
+            }
+            $data=$this->User3models->GetOrderincart($payload -> uuid);
+            for($x = 0 ; $x < count($data) ; $x++){
+                $sss=$data[$x]['sureorder_uuid'];
+                if($sss===""){
+                    $this->User3models->GenOrderuuid($request,$payload -> uuid,$payload -> email);
+                }
+            }
+            $this->response("checked out", MY_Controller::HTTP_OK);
     }
+
+    //ยังทำไม่เสร็จแต่ใกล้แล้ว
+    // public function CheckOutToSureOrder_post(){
+    //     $request = $this->post();
+    //     $header = apache_request_headers();
+    //     $token = $header["X-Access-Token"];
+    //     $payload = $this -> CheckJWTtoken($token);
+    //     if (empty($request["Fname"]) || empty($request["Lname"]) || empty($request["phone"]) || empty($request["email"]) || empty($request["address"]))
+    //     {
+    //         $msg = ['status'=>false,'error'=>true,'message'=>'กรุณากรอกข้อมูลให้ครบ'];
+            
+    //         $this->response($msg, MY_Controller::HTTP_OK);
+    //     }
+    //     $data=$this->User3models->GetOrderincart($payload -> uuid);
+    //     // $sss=$data['0']['sureorder_uuid'];
+    //     for($x = 0 ; $x < count($data) ; $x++){
+    //         $sss=$data[$x]['sureorder_uuid'];
+    //         if($sss===""){
+    //             $this->User3models->GenOrderuuid($request,$payload -> uuid,$payload -> email);
+    //         }
+    //         // $this->response('yes', MY_Controller::HTTP_OK);
+    //     }
+        
+    //     // $this->response($sss, MY_Controller::HTTP_OK);
+    // }
 }

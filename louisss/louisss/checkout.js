@@ -42,19 +42,61 @@ app.controller('myCtrlCart', function ($scope) {
       "method": "POST",
       "timeout": 0,
       "headers": {
-        "X-Access-Token": localStorage.getItem("token")
+        "X-Access-Token": localStorage.getItem("token"),
+        "Content-Type": "application/x-www-form-urlencoded"
       },
+      "data": {
+        "Fname": document.getElementById("sendFname").value,
+        "Lname": document.getElementById("sendLname").value,
+        "phone": document.getElementById("sendphone").value,
+        "email": document.getElementById("sendemail").value,
+        "address": document.getElementById("sendaddress").value,
+      }
     };
-
+    
     $.ajax(settings).done(function (response) {
       console.log(response);
       if(response==='checked out'){
         Swal.fire({
-          title: 'hi',
-          text: '',
+          title: 'ยืนยังสินค้าเรียบร้อย',
+          text: 'กำลังไปสู่ขั้นตอนชำระเงิน',
           icon: 'success'
+        });
+        setTimeout(function(){
+          location.href = "pay.html";
+      }, 1000);
+      }
+      if(response.message === "กรุณากรอกข้อมูลให้ครบ"){
+        Swal.fire({
+          title: "กรอกข้อมูลไม่ครบ",
+          text: "กรุณากรอกข้อมูลให้ครบ",
+          icon: "error"
         });
       }
     });
   }
+
+  
+  // $scope.CheckOutToSureOrder = function(){
+  //   var settings = {
+  //     "url": "http://localhost/php-api/index.php/api/User3/CheckOutToSureOrder",
+  //     "method": "POST",
+  //     "timeout": 0,
+  //     "headers": {
+  //       "X-Access-Token": localStorage.getItem("token"),
+  //       "Content-Type": "application/x-www-form-urlencoded"
+  //     },
+  //     "data": {
+  //       "Fname": document.getElementById("sendFname").value,
+  //       "Lname": document.getElementById("sendLname").value,
+  //       "phone": document.getElementById("sendphone").value,
+  //       "email": document.getElementById("sendemail").value,
+  //       "address": document.getElementById("sendaddress").value,
+  //     }
+  //   };
+    
+  //   $.ajax(settings).done(function (response) {
+  //     console.log(response);
+  //   });
+  // }
 });

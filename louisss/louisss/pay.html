@@ -13,7 +13,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Checkout - Louisss</title>
+    <title>Pay - Louisss</title>
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -28,7 +28,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="checkout.js"></script>
+    <script src="pay.js"></script>
 </head>
 
 <body>
@@ -38,36 +38,21 @@
 
     <div class="hero_area">
         <div class="login" style="margin-top: 3%; margin-left: auto ;margin-right: auto; width: 60%;">
-            <div ng-app="myAppCart" ng-controller="myCtrlCart">
+            <div ng-app="myAppPay" ng-controller="myCtrlPay">
                 <div class="heading_container heading_center">
                     <h2>
-                        คำสั่งซื้อของคุณ {{name}}
+                        รายละเอียดการสั่งซื้อ
                     </h2>
                 </div>
                 <div class="row">
                     <div class="col"
                         style="border-left-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
-                        <h2><b>ข้อมูลที่จัดส่ง</b></h2>
-
-                        <label for="Fname"><b>ชื่อ</b></label><br>
-                        <input id="sendFname" class="login-input" type="text" placeholder="กรอก ชื่อ" required><br>
-
-                        <label for="Lname"><b>นามสกุล</b></label><br>
-                        <input id="sendLname" class="login-input" type="text" placeholder="กรอก นามสกุล" required><br>
-
-                        <label for="email"><b>email</b></label><br>
-                        <input id="sendemail" class="login-input" type="email" placeholder="กรอก email" required><br>
-
-                        <label for="phone"><b>เบอร์มือถือ</b></label><br>
-                        <input id="sendphone" class="login-input" type="text" placeholder="กรอก เบอร์มือถือ" required><br>
-
-                        <label for="address"><b>ที่อยู่</b></label><br>
-                        <input id="sendaddress" class="login-input" type="text" placeholder="กรอก ที่อยู่" required><br>
+                        <h2><b>ที่อยู่จัดส่งสินค้า</b></h2>
 
                     </div>
                     <div class="col"
                         style="border-left-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
-                        <h2><b>รายการสั่งซื้อ</b></h2>
+                        <h2><b>สินค้า</b></h2>
                         <div ng-repeat="y in k"
                             style="border-bottom-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
                             <div>
@@ -77,15 +62,16 @@
 
                             </div>
                         </div>
-                        <h3 style="margin: 15px; text-align: right;">
-                            ทั้งหมด : {{sumamount}} เล่ม<br>
-                            ยอดรวม : <span style="color: #44b89d; font-weight: bold;">{{sumprince}}</span> บาท</h3>
-
-
-                        <button ng-click="checkouttoconfirm(); CheckOutToSureOrder()" class="nicebutton-login" type="submit"
-                            style="margin-left: auto ;margin-right: auto; width: 100%;">ยืนยันการสั่งซื้อ</button>
                     </div>
                 </div>
+
+                <h3 style="margin: 15px; text-align: right;">
+                    ทั้งหมด : {{sumamount}} เล่ม<br>
+                    ยอดต้องชำระ : <span style="color: #44b89d; font-weight: bold;">{{sumprince}}</span> บาท</h3>
+                <label for="receipt"><b>อัพโหลดสลิป</b></label> <br>
+                <input id="receipt" type="file"><br>
+                <button ng-click="" class="nicebutton-login" type="submit"
+                    style="margin-left: auto ;margin-right: auto; width: 60%;">แจ้งชำระเงิน</button>
             </div>
         </div>
     </div>

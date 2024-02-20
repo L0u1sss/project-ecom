@@ -353,22 +353,6 @@ class User3models extends CI_Model
         $data = ["res1" => $res1, "res2" => $res2];
         return $data;
     }
-    //ยังไม่ได้ใช้
-    public function CancelBookinCart($request,$user_uuid){
-        $book_uuid=$request['book_uuid'];
-        $sql = "SELECT uuid
-                FROM cart
-                WHERE user_uuid='$user_uuid' AND status ='001' AND book_uuid='$book_uuid'
-                ";
-        $query = $this ->db->query($sql);
-        $res = $query->result_array();
-        if($res){
-            return $res;
-        }
-        else{
-            return false;
-        }
-    }
 
     public function CancelThisBookinCart($request){
         $cart_uuid = $request['cart_uuid'];
@@ -404,5 +388,47 @@ class User3models extends CI_Model
         $this->db->set('sold',$upbook_sold);
         $this->db->where('uuid',$uuid);
         $query = $this ->db->update('book');
+    }
+
+    public function Updatecartcheckouttoconfirm($cart_uuid){
+        $this->db->set('status','002');
+        $this->db->where('uuid',$cart_uuid);
+        $query = $this ->db->update('cart');
+    }
+
+    public function GetOrderincart($user_uuid){
+        $sql = "SELECT sureorder_uuid
+                FROM cart
+                WHERE cart.status = '002' AND cart.user_uuid = '$user_uuid'
+                ";
+        $query = $this ->db->query($sql);
+        $res = $query->result_array();
+        if($res){
+            return $res;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function GenOrderuuid($request,$user_uuid,$user_email){
+        $sureorder_uuid = hash('sha512',Date('Y-m-d h:i:s'));
+        $this->db->set('sureorder_uuid',$sureorder_uuid);
+        $this->db->where('status','002');
+        $this->db->where('user_uuid',$user_uuid);
+        $this->db->where('sureorder_uuid','');
+        $query = $this ->db->update('cart');
+
+        $this->db->set('uuid',$sureorder_uuid);
+        $this->db->set('Fname',$request['Fname']);
+        $this->db->set('Lname',$request['Lname']);
+        $this->db->set('phone',$request['phone']);
+        $this->db->set('email',$request['email']);
+        $this->db->set('address',$request['address']);
+        $this->db->set('create_at',Date('Y-m-d h:i:s'));
+        $this->db->set('create_by',$user_email);
+        $this->db->set('update_at',Date('Y-m-d h:i:s'));
+        $this->db->set('update_by',$user_email);
+        $query = $this ->db->insert('sureorder');
     }
 }

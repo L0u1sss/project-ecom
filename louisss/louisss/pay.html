@@ -48,12 +48,15 @@
                     <div class="col"
                         style="border-left-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
                         <h2><b>ที่อยู่จัดส่งสินค้า</b></h2>
+                        <h2><i>{{name}} {{lname}} <br>
+                            {{address}} <br>
+                            {{phone}}</i></h2>
 
                     </div>
                     <div class="col"
                         style="border-left-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
                         <h2><b>สินค้า</b></h2>
-                        <div ng-repeat=""
+                        <div ng-repeat="y in item"
                             style="border-bottom-style: solid; border-width: 1px; border-color: rgb(172, 172, 172); margin: 15px;">
                             <div>
                                 <h3>{{y.name}}</h3>
@@ -66,12 +69,12 @@
                 </div>
 
                 <h3 style="margin: 15px; text-align: right;">
-                    ทั้งหมด : {{sumamount}} เล่ม<br>
-                    ยอดต้องชำระ : <span style="color: #44b89d; font-weight: bold;">{{sumprince}}</span> บาท</h3>
+                    ทั้งหมด : {{amount}} เล่ม<br>
+                    ยอดต้องชำระ : <span style="color: #44b89d; font-weight: bold;">{{price}}</span> บาท</h3>
                 <label for="receipt"><b>อัพโหลดสลิป</b></label> <br>
                 <input id="receipt" type="file"><br>
                 <button ng-click="" class="nicebutton-login" type="submit"
-                    style="margin-left: auto ;margin-right: auto; width: 60%;">แจ้งชำระเงิน</button>
+                    style="margin-left: auto ;margin-right: auto; width: 50%;">แจ้งชำระเงิน</button>
             </div>
         </div>
     </div>

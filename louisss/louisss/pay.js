@@ -26,10 +26,18 @@ app.controller('myCtrlPay', function ($scope) {
       console.log(response);
       let address = response.res3;
       console.log(address);
+      $scope.name = address[0].Fname;
+      $scope.lname = address[0].Lname;
+      $scope.address = address[0].address;
+      $scope.phone = address[0].phone;
       let sum = response.res2;
       console.log(sum);
+      $scope.amount = sum[0].amount;
+      $scope.price = sum[0].price;
       let item = response.res1;
+      $scope.item = item;
       console.log(item);
+      $scope.$apply();
     });
   }
 });

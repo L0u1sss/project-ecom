@@ -418,6 +418,15 @@ class User3models extends CI_Model
         $this->db->where('user_uuid',$user_uuid);
         $this->db->where('sureorder_uuid','');
         $query = $this ->db->update('cart');
+        if($sureorder_uuid){
+            return $sureorder_uuid;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function insertsureorder($request,$user_uuid,$user_email,$sureorder_uuid){
 
         $this->db->set('uuid',$sureorder_uuid);
         $this->db->set('Fname',$request['Fname']);
@@ -430,5 +439,36 @@ class User3models extends CI_Model
         $this->db->set('update_at',Date('Y-m-d h:i:s'));
         $this->db->set('update_by',$user_email);
         $query = $this ->db->insert('sureorder');
+    }
+
+    public function getinfoinsureorder($request,$user_uuid,$user_email){
+        $sureorderuuid=$request['sureorder'];
+        $sql1 = "SELECT b.name, ca.amount, ca.price
+                FROM sureorder so
+                INNER JOIN cart ca
+                ON ca.sureorder_uuid = so.uuid
+                INNER JOIN book b
+                ON b.uuid = ca.book_uuid
+                WHERE so.uuid = '$sureorderuuid' AND so.create_by = '$user_email'
+                ";
+        $query1 = $this ->db->query($sql1);
+        $res1 = $query1->result_array();
+
+        $sql2 = "SELECT sum(amount) as amount, sum(price) as price
+                FROM cart
+                WHERE sureorder_uuid = '$sureorderuuid' AND status = '002' 
+                ";
+        $query2 = $this ->db->query($sql2);
+        $res2 = $query2->result_array();
+
+        $sql3 = "SELECT Fname, Lname, phone, email, address
+                FROM sureorder
+                WHERE uuid = '$sureorderuuid'
+                ";
+        $query3 = $this ->db->query($sql3);
+        $res3 = $query3->result_array();
+
+        $data = ["res1" => $res1, "res2" => $res2 , "res3" => $res3];
+        return $data;
     }
 }

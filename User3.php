@@ -459,34 +459,21 @@ class User3 extends MY_Controller {
             for($x = 0 ; $x < count($data) ; $x++){
                 $sss=$data[$x]['sureorder_uuid'];
                 if($sss===""){
-                    $this->User3models->GenOrderuuid($request,$payload -> uuid,$payload -> email);
+                    $response = $this->User3models->GenOrderuuid($request, $payload -> uuid, $payload -> email);
                 }
             }
-            $this->response("checked out", MY_Controller::HTTP_OK);
+
+            $msg = ['status'=>true,'error'=>false,'message'=>'checked out','sureorder' => $response];
+            $this->User3models->insertsureorder($request, $payload -> uuid, $payload -> email, $msg["sureorder"]);
+            $this->response($msg, MY_Controller::HTTP_OK);
     }
 
-    //ยังทำไม่เสร็จแต่ใกล้แล้ว
-    // public function CheckOutToSureOrder_post(){
-    //     $request = $this->post();
-    //     $header = apache_request_headers();
-    //     $token = $header["X-Access-Token"];
-    //     $payload = $this -> CheckJWTtoken($token);
-    //     if (empty($request["Fname"]) || empty($request["Lname"]) || empty($request["phone"]) || empty($request["email"]) || empty($request["address"]))
-    //     {
-    //         $msg = ['status'=>false,'error'=>true,'message'=>'กรุณากรอกข้อมูลให้ครบ'];
-            
-    //         $this->response($msg, MY_Controller::HTTP_OK);
-    //     }
-    //     $data=$this->User3models->GetOrderincart($payload -> uuid);
-    //     // $sss=$data['0']['sureorder_uuid'];
-    //     for($x = 0 ; $x < count($data) ; $x++){
-    //         $sss=$data[$x]['sureorder_uuid'];
-    //         if($sss===""){
-    //             $this->User3models->GenOrderuuid($request,$payload -> uuid,$payload -> email);
-    //         }
-    //         // $this->response('yes', MY_Controller::HTTP_OK);
-    //     }
-        
-    //     // $this->response($sss, MY_Controller::HTTP_OK);
-    // }
+   public function GetInfoinSureOrder_post(){
+        $request = $this->post();
+        $header = apache_request_headers();
+        $token = $header["X-Access-Token"];
+        $payload = $this -> CheckJWTtoken($token);
+        $response = $this->User3models->getinfoinsureorder($request, $payload -> uuid, $payload -> email);
+        $this->response($response, MY_Controller::HTTP_OK);
+   }
 }

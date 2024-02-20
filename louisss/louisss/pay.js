@@ -2,59 +2,34 @@ console.log('connect pay.js');
 var app = angular.module('myAppPay', []);
 app.controller('myCtrlPay', function ($scope) {
   console.log('connect pay.js controller');
-  $scope.k = [];
-
+  const queryString = window.location.search;
+  console.log(queryString);
+  const urlParams = new URLSearchParams(queryString);
+  const uuidSureorder = urlParams.get('uuidSureorder')
+  console.log(uuidSureorder);
   info();
   function info() {
     var settings = {
-      "url": "http://localhost/php-api/index.php/api/User3/GetBookInCart",
+      "url": "http://localhost/php-api/index.php/api/User3/GetInfoinSureOrder",
       "method": "POST",
       "timeout": 0,
       "headers": {
-        "X-Access-Token": localStorage.getItem("token")
+        "X-Access-Token": localStorage.getItem("token"),
+        "Content-Type": "application/x-www-form-urlencoded"
       },
+      "data": {
+        "sureorder": uuidSureorder
+      }
     };
-
+    
     $.ajax(settings).done(function (response) {
       console.log(response);
-      if (response) {
-        let item = response;
-        console.log(item);
-        let k = response.Item;
-        console.log(k);
-        $scope.k = k;
-        console.log($scope.k);
-        $scope.name = item.Item[0].Fname;
-        $scope.sumamount = item.amount
-        $scope.sumprince = item.prince
-        console.log($scope.sumprince);
-        // $scope.x = item.Item.Fname;
-        // console.log($scope.item);
-        // $scope.image = "http://localhost/" + item.Item.image;
-        $scope.$apply();
-      }
-    });
-  }
-
-  $scope.checkouttoconfirm = function () {
-    var settings = {
-      "url": "http://localhost/php-api/index.php/api/User3/checkouttoconfirm",
-      "method": "POST",
-      "timeout": 0,
-      "headers": {
-        "X-Access-Token": localStorage.getItem("token")
-      },
-    };
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      if(response==='checked out'){
-        Swal.fire({
-          title: 'hi',
-          text: '',
-          icon: 'success'
-        });
-      }
+      let address = response.res3;
+      console.log(address);
+      let sum = response.res2;
+      console.log(sum);
+      let item = response.res1;
+      console.log(item);
     });
   }
 });

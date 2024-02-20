@@ -53,18 +53,18 @@ app.controller('myCtrlCart', function ($scope) {
         "address": document.getElementById("sendaddress").value,
       }
     };
-    
+    console.log("123123");
     $.ajax(settings).done(function (response) {
       console.log(response);
-      if(response==='checked out'){
+      if(response.status  == true){
         Swal.fire({
           title: 'ยืนยังสินค้าเรียบร้อย',
           text: 'กำลังไปสู่ขั้นตอนชำระเงิน',
           icon: 'success'
         });
         setTimeout(function(){
-          location.href = "pay.html";
-      }, 1000);
+          location.href = "./pay.html?uuidSureorder=" + response.sureorder;
+        }, 1000);
       }
       if(response.message === "กรุณากรอกข้อมูลให้ครบ"){
         Swal.fire({

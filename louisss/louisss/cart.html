@@ -61,16 +61,20 @@
                             <h1>{{y.name}}</h1><br>
                             <h3>จำนวน : {{y.amount}} เล่ม</h3>
                             <h3>ราคา : <span style="color: #44b89d;">{{y.price}}</span> บาท</h3>
+
                             <div>
                                 <button ng-click="cancel(y.uuid, y.book_uuid)" class="cancelbutton" type="submit">ยกเลิก</button>
                             </div>
+
                         </div>
                     </div>
                 </div>
                 <h1 style="margin: 15px;">
                 ทั้งหมด : {{sumamount}} เล่ม<br>
                 รวมราคา : <span style="color: #44b89d; font-weight: bold;">{{sumprince}}</span> บาท</h1>
-                <a class="nicebutton-login" href="checkout.html">สั่งซื้อและชำระเงิน</a>
+                <div ng-if="statebutton">
+                    <a class="nicebutton-login" href="checkout.html">สั่งซื้อและชำระเงิน</a>
+                </div>
             </div>
         </div>
     </section>

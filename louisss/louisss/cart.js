@@ -24,6 +24,15 @@ app.controller('myCtrlCart', function ($scope) {
         console.log(k);
         $scope.k = k;
         console.log($scope.k);
+        $scope.statebutton = response.message;
+        console.log($scope.statebutton);
+        if($scope.statebutton === "cannot get cart"){
+          $scope.statebutton = false;
+        }
+        if($scope.statebutton === "get cart"){
+          $scope.statebutton = true;
+        }
+        console.log($scope.statebutton);
         $scope.name = item.Item[0].Fname;
         $scope.sumamount = item.amount
         $scope.sumprince = item.prince
